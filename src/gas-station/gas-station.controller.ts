@@ -1,6 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { GasStationService } from './gas-station.service';
 import { GetGasStationDto } from './dto/get-gas-station.dto';
+import { QueryValidationPipe } from 'src/pipes/query-validation.pipe';
 
 @Controller('gas-station')
 export class GasStationController {
@@ -8,24 +9,12 @@ export class GasStationController {
 
   @Get()
   async getGasStationsByPostalCodeAndFuel(
-    @Query('fuelType') fuelType: number,
-    @Query('postalCode') zip: string,
+    @Query('fuelType', new QueryValidationPipe()) fuelType: number,
+    @Query('postalCode', new QueryValidationPipe()) zip: string,
   ): Promise<GetGasStationDto[]> {
     return await this.gasStationService.getGasStationsByPostalCodeAndFuel(
       fuelType,
       zip,
     );
   }
-
-  // @Get('all')
-  // async getGasStationsByPostalCodeAndFuel(
-  //   @Query('fuelType', new QueryValidationPipe()) fuelType: number,
-  //   @Query('cp', new QueryValidationPipe()) cp: string,
-  //   // @Query('province', new QueryValidationPipe()) province?: number,
-  // ): Promise<GetGasStationsDto[]> {
-  //   return await this.gasStationService.getGasStationsByPostalCodeAndFuel(
-  //     fuelType,
-  //     cp,
-  //   );
-  // }
 }
