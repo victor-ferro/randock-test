@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GasStationService } from './gas-station.service';
 import { GasStationController } from './gas-station.controller';
-import { DataModule } from 'src/data/data.module';
+import { DataModule } from '../data/data.module';
 import { DataGasStationDAO } from './dao/data-gas-station-dao.service';
 import { UrlGoogleMapsService } from '../url-google-maps/url-google-maps.service';
 

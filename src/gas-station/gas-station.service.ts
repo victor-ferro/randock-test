@@ -26,7 +26,7 @@ export class GasStationService {
       nombre: station.Rótulo,
       precio: station.PrecioProducto.replace(',', '.'),
       direccion: station.Dirección,
-      urlGoogleMaps: this.urlGoogleMaps.buildGoogleMapsUrl(station),
+      urlGoogleMaps: this.urlGoogleMaps.buildGoogleMapsUrlByCoord(station),
     }));
     const gasStationSort = gasStations.sort(
       (a, b) => parseFloat(a.precio) - parseFloat(b.precio),
