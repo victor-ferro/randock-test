@@ -2,12 +2,14 @@ import { Inject, Injectable } from '@nestjs/common';
 import { GetGasStationDto } from './dto/get-gas-station.dto';
 import { GasStationDAO } from './interface/gas-station-dao.interface';
 import { GasStationDto } from './dto/gas-station.dto';
+import { UrlGoogleMapsService } from 'src/url-google-maps/url-google-maps.service';
 
 @Injectable()
 export class GasStationService {
   constructor(
     @Inject('GasStationDAO')
     private readonly gasStationDAO: GasStationDAO,
+    private readonly urlGoogleMaps: UrlGoogleMapsService,
   ) {}
   async getGasStationsByPostalCodeAndFuel(
     fuelType: number,
@@ -24,8 +26,11 @@ export class GasStationService {
       nombre: station.Rótulo,
       precio: station.PrecioProducto.replace(',', '.'),
       direccion: station.Dirección,
-      urlGoogleMaps: '',
+      urlGoogleMaps: this.urlGoogleMaps.buildGoogleMapsUrl(station),
     }));
-    return gasStations;
+    const gasStationSort = gasStations.sort(
+      (a, b) => parseFloat(a.precio) - parseFloat(b.precio),
+    );
+    return gasStationSort;
   }
 }
