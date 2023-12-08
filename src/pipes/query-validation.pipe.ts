@@ -5,7 +5,7 @@ import {
   BadRequestException,
   ParseIntPipe,
 } from '@nestjs/common';
-import { InvalidFuelTypeException } from '../errors/invalidFuelType.exception';
+import { InvalidFuelTypeException } from '../errors/invalid-fuel-type.exception';
 
 @Injectable()
 export class QueryValidationPipe implements PipeTransform {

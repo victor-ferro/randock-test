@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { GasStationDto } from '../dto/gas-station.dto';
 import { GasStationDAO } from '../interface/gas-station-dao.interface';
 import { DataService } from 'src/data/data.service';
+import { EmptyResponseException } from 'src/errors/empty-response.exception';
 @Injectable()
 export class DataGasStationDAO implements GasStationDAO {
   constructor(private readonly dataService: DataService) {}
@@ -15,6 +16,10 @@ export class DataGasStationDAO implements GasStationDAO {
       fuelType,
       province,
     );
+
+    if (response.length === 0) {
+      throw new EmptyResponseException(zip);
+    }
     if (zip) {
       return response.filter((station) => station['C.P.'] === zip);
     } else {
