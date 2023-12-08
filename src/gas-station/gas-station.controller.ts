@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { GasStationService } from './gas-station.service';
 import { GetGasStationDto } from './dto/get-gas-station.dto';
-import { QueryValidationPipe } from 'src/pipes/query-validation.pipe';
+import { QueryValidationPipe } from '../pipes/query-validation.pipe';
 
 @Controller('gas-station')
 export class GasStationController {

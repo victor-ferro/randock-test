@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { GetGasStationDto } from './dto/get-gas-station.dto';
 import { GasStationDAO } from './interface/gas-station-dao.interface';
 import { GasStationDto } from './dto/gas-station.dto';
-import { UrlGoogleMapsService } from 'src/url-google-maps/url-google-maps.service';
+import { UrlGoogleMapsService } from '../url-google-maps/url-google-maps.service';
 
 @Injectable()
 export class GasStationService {
