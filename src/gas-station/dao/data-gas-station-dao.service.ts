@@ -17,13 +17,11 @@ export class DataGasStationDAO implements GasStationDAO {
       province,
     );
 
-    if (response.length === 0) {
+    const stations = response.filter((station) => station['C.P.'] === zip);
+    if (stations.length === 0) {
       throw new EmptyResponseException(zip);
     }
-    if (zip) {
-      return response.filter((station) => station['C.P.'] === zip);
-    } else {
-      return response;
-    }
+
+    return stations;
   }
 }
