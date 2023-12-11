@@ -46,3 +46,6 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## ENDPOINT
+http://localhost:3000/api/gas-station?fuelType=FUEL_TYPE&postalCode=POSTAL_CODE
